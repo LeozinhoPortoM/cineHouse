@@ -1,27 +1,16 @@
-const { notDeepEqual } = require('assert');
-const fs = require('fs');
-//const catalogo = require("./database/catalogo");
-
-
-
-const filmesCatalogo = fs.readFileSync('./database/catalogo.json', 'utf-8'); // String
-const catalogo = JSON.parse(filmesCatalogo) // Object
-
+const catalogo = require("./database/catalogo");
 
 function listarTodosOsFilmes() {
 
-    catalogo.forEach(function(filme){
+    catalogo.forEach(function (filme) {
         console.log(filme)
     });
-    //console.log(catalogo)
+
 }
 
 function adicionarFilme(filme) {
-    
-    //catalogo.push(filme);
-    const newFilmeObject = {...catalogo, ...filme};
-    const newFilmeString = JSON.stringify(newFilmeObject, null, 3);
-    fs.appendFileSync('./database/catalogo.json', newFilmeString, 'utf-8');
+
+    catalogo.push(filme);
 
 }
 
@@ -63,11 +52,9 @@ function alterarStatusEmCartaz(codigoFilme) {
 }
 
 function removerFilme(codigoFilme) {
-    
-    //catalogo.pop()
-    // let codFilme = catalogo.filter((valor) => valor.codigo === codigoFilme)
-    // //const newFilmeString = JSON.stringify(codigoFilme, null, 3);
-    // fs.rm('./database/catalogo.json', codFilme)
+
+    catalogo.pop(codigoFilme)
+
 }
 
 
